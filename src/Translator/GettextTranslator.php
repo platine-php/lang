@@ -234,7 +234,7 @@ class GettextTranslator extends BaseTranslator
 
         if (!empty($args)) {
             if (!is_array($args)) {
-                $args = array_slice(func_get_args(), 3);
+                $args = array_slice(func_get_args(), 4);
             }
 
             $translation = vsprintf($translation, $args);
