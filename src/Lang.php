@@ -176,6 +176,15 @@ class Lang
     }
 
     /**
+     * Return the list of domain
+     * @return array<string, string>
+     */
+    public function getDomains(): array
+    {
+        return $this->translator->getDomains();
+    }
+
+    /**
      * {@inhereitdoc}
      * @see TranslatorInterface::locales
      * @return array<int, string>
@@ -196,32 +205,32 @@ class Lang
 
     /**
      * {@inhereitdoc}
-     * @see TranslatorInterface::translate
+     * @see TranslatorInterface::tr
      * @param string $message
      * @param array<int, mixed>|mixed $args
      * @return string
      */
-    public function translate(string $message, $args = []): string
+    public function tr(string $message, $args = []): string
     {
-        return $this->translator->translate($message, $args);
+        return $this->translator->tr($message, $args);
     }
 
     /**
      * {@inhereitdoc}
-     * @see TranslatorInterface::translatePlural
+     * @see TranslatorInterface::trp
      * @param string $singular
      * @param string $plural
      * @param int $count
      * @param array<int, mixed>|mixed $args
      * @return string
      */
-    public function translatePlural(
+    public function trp(
         string $singular,
         string $plural,
         int $count,
         $args = []
     ): string {
-        return $this->translator->translatePlural(
+        return $this->translator->trp(
             $singular,
             $plural,
             $count,
@@ -231,18 +240,18 @@ class Lang
 
     /**
      * {@inhereitdoc}
-     * @see TranslatorInterface::translateDomain
+     * @see TranslatorInterface::trd
      * @param string $message
      * @param string $domain
      * @param array<int, mixed>|mixed $args
      * @return string
      */
-    public function translateDomain(
+    public function trd(
         string $message,
         string $domain,
         $args = []
     ): string {
-        return $this->translator->translateDomain(
+        return $this->translator->trd(
             $message,
             $domain,
             $args
@@ -251,7 +260,7 @@ class Lang
 
     /**
      * {@inhereitdoc}
-     * @see TranslatorInterface::translateDomainPlural
+     * @see TranslatorInterface::trdp
      * @param string $singular
      * @param string $plural
      * @param int $count
@@ -259,14 +268,14 @@ class Lang
      * @param array<int, mixed>|mixed $args
      * @return string
      */
-    public function translateDomainPlural(
+    public function trdp(
         string $singular,
         string $plural,
         int $count,
         string $domain,
         $args = []
     ): string {
-        return $this->translator->translateDomainPlural(
+        return $this->translator->trdp(
             $singular,
             $plural,
             $count,

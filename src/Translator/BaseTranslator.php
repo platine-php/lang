@@ -46,7 +46,6 @@ declare(strict_types=1);
 
 namespace Platine\Lang\Translator;
 
-use InvalidArgumentException;
 use Platine\Lang\Configuration;
 use Platine\Lang\Storage\MemoryStorage;
 use Platine\Lang\Storage\StorageInterface;
@@ -71,18 +70,30 @@ abstract class BaseTranslator implements TranslatorInterface
     protected StorageInterface $storage;
 
     /**
-     * List of domain currently in use
-     * @var array<string, string>
-     */
-    protected array $domains = [];
-
-    /**
      * {@inhereitdoc}
      */
     public function __construct(Configuration $config, ?StorageInterface $storage = null)
     {
         $this->config = $config;
         $this->storage = $storage ? $storage : new MemoryStorage($config);
+    }
+
+    /**
+     * Return the configuration
+     * @return Configuration
+     */
+    public function getConfig(): Configuration
+    {
+        return $this->config;
+    }
+
+    /**
+     * Return the storage instance
+     * @return StorageInterface
+     */
+    public function getStorage(): StorageInterface
+    {
+        return $this->storage;
     }
 
     /**
@@ -114,19 +125,17 @@ abstract class BaseTranslator implements TranslatorInterface
     /**
      * {@inhereitdoc}
      */
+    public function getDomains(): array
+    {
+        return $this->storage->getDomains();
+    }
+
+    /**
+     * {@inhereitdoc}
+     */
     public function addDomain(string $domain, ?string $path = null): self
     {
-        if (isset($this->domains[$domain])) {
-            throw new InvalidArgumentException(sprintf(
-                'Domain [%s] already exists',
-                $domain
-            ));
-        }
-
-        if ($path === null) {
-            $path = $this->config->getTranslationPath();
-        }
-        $this->domains[$domain] = $path;
+        $this->storage->addDomain($domain, $path);
 
         return $this;
     }

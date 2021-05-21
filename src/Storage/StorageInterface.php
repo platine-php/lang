@@ -100,4 +100,10 @@ interface StorageInterface
      * @return $this
      */
     public function addDomain(string $domain, ?string $path = null): self;
+
+    /**
+     * Return the list of domain
+     * @return array<string, string>
+     */
+    public function getDomains(): array;
 }

@@ -133,12 +133,18 @@ interface TranslatorInterface
     public function addDomain(string $domain, ?string $path = null): self;
 
     /**
+     * Return the list of domain
+     * @return array<string, string>
+     */
+    public function getDomains(): array;
+
+    /**
      * Translation a single message using current domain
      * @param string $message
      * @param array<int, mixed>|mixed $args
      * @return string
      */
-    public function translate(string $message, $args = []): string;
+    public function tr(string $message, $args = []): string;
 
     /**
      * Translation a plural message using given domain
@@ -148,7 +154,7 @@ interface TranslatorInterface
      * @param array<int, mixed>|mixed $args
      * @return string
      */
-    public function translatePlural(
+    public function trp(
         string $singular,
         string $plural,
         int $count,
@@ -162,7 +168,7 @@ interface TranslatorInterface
      * @param array<int, mixed>|mixed $args
      * @return string
      */
-    public function translateDomain(string $message, string $domain, $args = []): string;
+    public function trd(string $message, string $domain, $args = []): string;
 
     /**
      * Translation a plural message for the given domain
@@ -173,7 +179,7 @@ interface TranslatorInterface
      * @param array<int, mixed>|mixed $args
      * @return string
      */
-    public function translateDomainPlural(
+    public function trdp(
         string $singular,
         string $plural,
         int $count,

@@ -99,6 +99,23 @@ class MemoryStorage implements StorageInterface
     }
 
     /**
+     * Return the configuration
+     * @return Configuration
+     */
+    public function getConfig(): Configuration
+    {
+        return $this->config;
+    }
+
+    /**
+     * {@inhereitdoc}
+     */
+    public function getDomains(): array
+    {
+        return $this->domains;
+    }
+
+    /**
      * {@inhereitdoc}
      */
     public function setLocale(string $locale): self

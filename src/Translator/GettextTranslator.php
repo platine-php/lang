@@ -46,7 +46,6 @@ declare(strict_types=1);
 
 namespace Platine\Lang\Translator;
 
-use Exception;
 use Platine\Lang\Configuration;
 use Platine\Lang\Exception\LocaleNotSupportedException;
 use Platine\Lang\Storage\StorageInterface;
@@ -105,18 +104,13 @@ class GettextTranslator extends BaseTranslator
             ));
         }
 
-        try {
-            $localeText = $locale . '.' . $this->getEncoding();
-            putenv('LC_ALL=' . $localeText);
-            setlocale(LC_ALL, $localeText);
+        $localeText = $locale . '.' . $this->getEncoding();
+        putenv('LC_ALL=' . $localeText);
+        setlocale(LC_ALL, $localeText);
 
-            parent::setLocale($locale);
+        parent::setLocale($locale);
 
-            return $this;
-        } catch (Exception $ex) {
-            $this->locale = $this->config->getFallbackLocale();
-            throw new Exception($ex->getMessage());
-        }
+        return $this;
     }
 
     /**
@@ -175,7 +169,9 @@ class GettextTranslator extends BaseTranslator
     {
         parent::addDomain($domain, $path);
 
-        bindtextdomain($domain, $this->domains[$domain]);
+        $domains = $this->storage->getDomains();
+
+        bindtextdomain($domain, $domains[$domain]);
         bind_textdomain_codeset($domain, $this->getEncoding());
 
         return $this;
@@ -184,7 +180,7 @@ class GettextTranslator extends BaseTranslator
     /**
     * {@inhereitdoc}
     */
-    public function translate(string $message, $args = []): string
+    public function tr(string $message, $args = []): string
     {
         $translation = gettext($message);
 
@@ -202,7 +198,7 @@ class GettextTranslator extends BaseTranslator
     /**
      * {@inhereitdoc}
      */
-    public function translateDomain(
+    public function trd(
         string $message,
         string $domain,
         $args = []
@@ -211,7 +207,7 @@ class GettextTranslator extends BaseTranslator
 
         if (!empty($args)) {
             if (!is_array($args)) {
-                $args = array_slice(func_get_args(), 1);
+                $args = array_slice(func_get_args(), 2);
             }
 
             $translation = vsprintf($translation, $args);
@@ -223,7 +219,7 @@ class GettextTranslator extends BaseTranslator
     /**
      * {@inhereitdoc}
      */
-    public function translateDomainPlural(
+    public function trdp(
         string $singular,
         string $plural,
         int $count,
@@ -246,7 +242,7 @@ class GettextTranslator extends BaseTranslator
     /**
      * {@inhereitdoc}
      */
-    public function translatePlural(
+    public function trp(
         string $singular,
         string $plural,
         int $count,

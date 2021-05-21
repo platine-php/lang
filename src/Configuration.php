@@ -47,6 +47,8 @@ declare(strict_types=1);
 namespace Platine\Lang;
 
 use InvalidArgumentException;
+use Platine\Lang\Storage\MemoryStorage;
+use Platine\Lang\Translator\GettextTranslator;
 
 /**
  * Class Configuration
@@ -61,7 +63,7 @@ class Configuration
      * Can be changed for your own translator mechanism
      * @var class-string<\Platine\Lang\Translator\TranslatorInterface>
      */
-    protected string $translator;
+    protected string $translator = GettextTranslator::class;
 
     /**
      * Key under which the current locale will be stored.
@@ -74,7 +76,7 @@ class Configuration
      * Is to be supposed that all strings are written in this language.
      * @var string
      */
-    protected string $locale = 'en_EN';
+    protected string $locale = 'en_US';
 
     /**
      * Default domain used for translations
@@ -84,18 +86,11 @@ class Configuration
     protected string $domain = 'messages';
 
     /**
-     * Fallback locale
-     * When default locale is not available
-     * @var string
-     */
-    protected string $fallbackLocale = 'en_EN';
-
-    /**
      * Supported locales
      * An array containing all allowed languages
      * @var array<int, string>
      */
-    protected array $locales = ['en_EN'];
+    protected array $locales = ['en_US'];
 
     /**
      * Default character set encoding.
@@ -107,7 +102,7 @@ class Configuration
      * Base translation directory path
      * @var string
      */
-    protected string $translationPath = __DIR__;
+    protected string $translationPath = '.';
 
     /**
      * Where to store the current locale
@@ -116,7 +111,7 @@ class Configuration
      * Can be changed for only memory or your own storage mechanism
      * @var class-string<\Platine\Lang\Storage\StorageInterface>
      */
-    protected string $storage;
+    protected string $storage = MemoryStorage::class;
 
     /**
      * The raw configuration array
@@ -185,15 +180,6 @@ class Configuration
     public function getLocale(): string
     {
         return $this->locale;
-    }
-
-    /**
-     * Return the fallback locales
-     * @return string
-     */
-    public function getFallbackLocale(): string
-    {
-        return $this->fallbackLocale;
     }
 
     /**
