@@ -7,7 +7,7 @@ namespace Platine\Test\Lang\Storage;
 use InvalidArgumentException;
 use Platine\Lang\Configuration;
 use Platine\Lang\Storage\MemoryStorage;
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 
 /**
  * MemoryStorage class tests
@@ -20,7 +20,15 @@ class MemoryStorageTest extends PlatineTestCase
 
     public function testConstructor(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['en_US']
+        ]);
+
         $s = new MemoryStorage($cfg);
         $this->assertInstanceOf(Configuration::class, $s->getConfig());
         $this->assertEquals($cfg, $s->getConfig());
@@ -28,7 +36,14 @@ class MemoryStorageTest extends PlatineTestCase
 
     public function testSetGetLocale(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['en_US']
+        ]);
         $s = new MemoryStorage($cfg);
         $s->setLocale('my_locale');
         $this->assertEquals('my_locale', $s->getLocale());
@@ -36,7 +51,14 @@ class MemoryStorageTest extends PlatineTestCase
 
     public function testSetGetDomain(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['en_US']
+        ]);
         $s = new MemoryStorage($cfg);
         $s->setDomain('my_domain');
         $this->assertEquals('my_domain', $s->getDomain());
@@ -44,7 +66,14 @@ class MemoryStorageTest extends PlatineTestCase
 
     public function testSetGetEncoding(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['en_US']
+        ]);
         $s = new MemoryStorage($cfg);
         $s->setEncoding('my_encoding');
         $this->assertEquals('my_encoding', $s->getEncoding());
@@ -52,7 +81,14 @@ class MemoryStorageTest extends PlatineTestCase
 
     public function testAddDomain(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class, ['getTranslationPath' => 'my_path']);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => 'my_path',
+            'locales' => ['en_US']
+        ]);
         $s = new MemoryStorage($cfg);
         $this->assertCount(0, $s->getDomains());
         $s->addDomain('my_domain');
@@ -65,7 +101,14 @@ class MemoryStorageTest extends PlatineTestCase
 
     public function testAddDomainAlreadyExists(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class, ['getTranslationPath' => 'my_path']);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['en_US']
+        ]);
         $s = new MemoryStorage($cfg);
         $s->addDomain('my_domain');
         $this->expectException(InvalidArgumentException::class);

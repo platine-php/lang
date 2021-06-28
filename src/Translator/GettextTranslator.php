@@ -89,7 +89,7 @@ class GettextTranslator extends BaseTranslator
 
         $locale = $this->storage->getLocale();
         $this->setLocale($locale);
-        $this->setDomain($config->getDomain());
+        $this->setDomain($config->get('domain'));
     }
 
     /**
@@ -154,7 +154,7 @@ class GettextTranslator extends BaseTranslator
     {
         parent::setDomain($domain);
 
-        bindtextdomain($domain, $this->config->getTranslationPath());
+        bindtextdomain($domain, $this->config->get('translation_path'));
         bind_textdomain_codeset($domain, $this->getEncoding());
 
         $this->domain = textdomain($domain);

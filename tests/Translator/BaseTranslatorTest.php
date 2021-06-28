@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Platine\Test\Lang\Storage;
 
+use Platine\Dev\PlatineTestCase;
 use Platine\Lang\Configuration;
-use Platine\Lang\Exception\LocaleNotSupportedException;
 use Platine\Lang\Storage\MemoryStorage;
-use Platine\Lang\Translator\GettextTranslator;
-use Platine\PlatineTestCase;
 use Platine\Test\Fixture\Lang\CustomTranslator;
 
 /**
@@ -22,7 +20,14 @@ class BaseTranslatorTest extends PlatineTestCase
 
     public function testConstructor(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new CustomTranslator($cfg, $storage);
         $this->assertInstanceOf(Configuration::class, $s->getConfig());
@@ -34,7 +39,14 @@ class BaseTranslatorTest extends PlatineTestCase
 
     public function testGetSetDomain(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new CustomTranslator($cfg, $storage);
 
@@ -44,7 +56,14 @@ class BaseTranslatorTest extends PlatineTestCase
 
     public function testGetSetEncoding(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new CustomTranslator($cfg, $storage);
 
@@ -54,7 +73,14 @@ class BaseTranslatorTest extends PlatineTestCase
 
     public function testGetSetLocale(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new CustomTranslator($cfg, $storage);
 
@@ -69,7 +95,14 @@ class BaseTranslatorTest extends PlatineTestCase
 
     public function testLocaleSupported(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new CustomTranslator($cfg, $storage);
 

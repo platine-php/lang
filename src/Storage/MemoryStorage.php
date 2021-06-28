@@ -93,9 +93,9 @@ class MemoryStorage implements StorageInterface
     public function __construct(Configuration $config)
     {
         $this->config = $config;
-        $this->domain = $config->getDomain();
-        $this->encoding = $config->getEncoding();
-        $this->locale = $config->getLocale();
+        $this->domain = $config->get('domain');
+        $this->encoding = $config->get('encoding');
+        $this->locale = $config->get('locale');
     }
 
     /**
@@ -182,7 +182,7 @@ class MemoryStorage implements StorageInterface
         }
 
         if ($path === null) {
-            $path = $this->config->getTranslationPath();
+            $path = $this->config->get('translation_path');
         }
         $this->domains[$domain] = $path;
 

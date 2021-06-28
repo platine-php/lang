@@ -183,7 +183,7 @@ abstract class BaseTranslator implements TranslatorInterface
      */
     public function isLocaleSupported(string $locale): bool
     {
-        return in_array($locale, $this->config->getLocales());
+        return in_array($locale, $this->config->get('locales'));
     }
 
     /**
@@ -191,6 +191,6 @@ abstract class BaseTranslator implements TranslatorInterface
      */
     public function locales(): array
     {
-        return $this->config->getLocales();
+        return $this->config->get('locales');
     }
 }

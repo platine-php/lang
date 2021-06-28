@@ -8,7 +8,7 @@ use Platine\Lang\Configuration;
 use Platine\Lang\Exception\LocaleNotSupportedException;
 use Platine\Lang\Storage\MemoryStorage;
 use Platine\Lang\Translator\GettextTranslator;
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 
 /**
  * GettextTranslator class tests
@@ -21,7 +21,14 @@ class GettextTranslatorTest extends PlatineTestCase
 
     public function testConstructor(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $this->assertInstanceOf(Configuration::class, $s->getConfig());
@@ -33,7 +40,14 @@ class GettextTranslatorTest extends PlatineTestCase
 
     public function testSetGetLocale(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $s->setLocale('en_US');
@@ -43,7 +57,14 @@ class GettextTranslatorTest extends PlatineTestCase
 
     public function testSetLocaleNotSupported(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $this->expectException(LocaleNotSupportedException::class);
@@ -52,7 +73,14 @@ class GettextTranslatorTest extends PlatineTestCase
 
     public function testSetGetEncoding(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $s->setEncoding('my_encoding');
@@ -61,7 +89,14 @@ class GettextTranslatorTest extends PlatineTestCase
 
     public function testAddDomain(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $this->assertCount(0, $s->getDomains());
@@ -77,7 +112,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_gettext_to_same;
         $mock_gettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res = $s->tr('Hello world');
@@ -89,7 +131,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_gettext_to_same;
         $mock_gettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res = $s->tr('Hello world %s', 45);
@@ -101,7 +150,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_gettext_to_same;
         $mock_gettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res = $s->tr('Hello world %s', [45]);
@@ -113,7 +169,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dgettext_to_same;
         $mock_dgettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res = $s->trd('Hello world', 'my_domain');
@@ -125,7 +188,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dgettext_to_same;
         $mock_dgettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res = $s->trd('Hello world %s', 'my_domain', 45);
@@ -137,7 +207,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dgettext_to_same;
         $mock_dgettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res = $s->trd('Hello world %s', 'my_domain', [45]);
@@ -149,7 +226,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dngettext_to_same;
         $mock_dngettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res1 = $s->trdp('Singular', 'Plural', 1, 'my_domain');
@@ -165,7 +249,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dngettext_to_same;
         $mock_dngettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res1 = $s->trdp('Singular %s', 'Plural %s', 1, 'my_domain', 1);
@@ -181,7 +272,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dngettext_to_same;
         $mock_dngettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res1 = $s->trdp('Singular %s', 'Plural %s', 1, 'my_domain', [10]);
@@ -197,7 +295,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dngettext_to_same;
         $mock_dngettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res1 = $s->trp('Singular', 'Plural', 1);
@@ -213,7 +318,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dngettext_to_same;
         $mock_dngettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res1 = $s->trp('Singular %s', 'Plural %s', 1, 1);
@@ -229,7 +341,14 @@ class GettextTranslatorTest extends PlatineTestCase
     {
         global $mock_dngettext_to_same;
         $mock_dngettext_to_same = true;
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
         $res1 = $s->trp('Singular %s', 'Plural %s', 1, [10]);

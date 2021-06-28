@@ -8,7 +8,7 @@ use Platine\Lang\Configuration;
 use Platine\Lang\Lang;
 use Platine\Lang\Storage\MemoryStorage;
 use Platine\Lang\Translator\TranslatorInterface;
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Test\Fixture\Lang\CustomTranslator;
 
 /**
@@ -31,7 +31,14 @@ class LangTest extends PlatineTestCase
 
     public function testSetGetLocale(): void
     {
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $translator = new CustomTranslator($cfg, $storage);
         $s = new Lang($translator);
@@ -43,7 +50,14 @@ class LangTest extends PlatineTestCase
     {
         global $mock_explode_to_false;
 
-        $cfg = new Configuration([]);
+        $cfg = new Configuration([
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => '.',
+            'locales' => ['fr_FR', 'en_US']
+        ]);
         $storage = new MemoryStorage($cfg);
         $translator = new CustomTranslator($cfg, $storage);
         $s = new Lang($translator);
