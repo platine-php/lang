@@ -88,14 +88,14 @@ class MemoryStorage implements StorageInterface
 
     /**
      * Create new instance
-     * @param Configuration $config
+     * @param Configuration|null $config
      */
-    public function __construct(Configuration $config)
+    public function __construct(?Configuration $config = null)
     {
-        $this->config = $config;
-        $this->domain = $config->get('domain');
-        $this->encoding = $config->get('encoding');
-        $this->locale = $config->get('locale');
+        $this->config = $config ?? new Configuration([]);
+        $this->domain = $this->config->get('domain');
+        $this->encoding = $this->config->get('encoding');
+        $this->locale = $this->config->get('locale');
     }
 
     /**

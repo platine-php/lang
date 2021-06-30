@@ -72,9 +72,11 @@ abstract class BaseTranslator implements TranslatorInterface
     /**
      * {@inhereitdoc}
      */
-    public function __construct(Configuration $config, ?StorageInterface $storage = null)
-    {
-        $this->config = $config;
+    public function __construct(
+        ?Configuration $config = null,
+        ?StorageInterface $storage = null
+    ) {
+        $this->config = $config ?? new Configuration([]);
         $this->storage = $storage ? $storage : new MemoryStorage($config);
     }
 

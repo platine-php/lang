@@ -69,4 +69,20 @@ class Configuration extends AbstractConfiguration
             'locales' => 'array'
         ];
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefault(): array
+    {
+        return [
+        'locale' => 'en_US',
+        'store_name' => 'app_lang',
+        'domain' => 'languages',
+        'encoding' => 'UTF-8',
+        'translation_path' => 'lang',
+        'locales' => ['en_US']
+    ];
+    }
+
 }

@@ -79,7 +79,7 @@ class GettextTranslator extends BaseTranslator
      * {@inhereitdoc}
      */
     public function __construct(
-        Configuration $config,
+        ?Configuration $config = null,
         ?StorageInterface $storage = null
     ) {
         parent::__construct($config, $storage);
@@ -89,7 +89,7 @@ class GettextTranslator extends BaseTranslator
 
         $locale = $this->storage->getLocale();
         $this->setLocale($locale);
-        $this->setDomain($config->get('domain'));
+        $this->setDomain($this->config->get('domain'));
     }
 
     /**

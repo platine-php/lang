@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace Platine\Test\Lang;
 
 use InvalidArgumentException;
-use Platine\Lang\Configuration;
-use Platine\Lang\Storage\MemoryStorage;
-use Platine\Lang\Translator\GettextTranslator;
 use Platine\Dev\PlatineTestCase;
-use stdClass;
+use Platine\Lang\Configuration;
 
 /**
  * Configuration class tests

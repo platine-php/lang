@@ -58,11 +58,11 @@ interface TranslatorInterface
 
     /**
      * The class constructor
-     * @param Configuration $config
+     * @param Configuration|null $config
      * @param StorageInterface|null $storage
      */
     public function __construct(
-        Configuration $config,
+        ?Configuration $config = null,
         ?StorageInterface $storage = null
     );
 
