@@ -141,8 +141,8 @@ class GettextTranslatorTest extends PlatineTestCase
         ]);
         $storage = new MemoryStorage($cfg);
         $s = new GettextTranslator($cfg, $storage);
-        $res = $s->tr('Hello world %s', 45);
-        $expected = 'Hello world 45';
+        $res = $s->tr('Hello world %s your age is %d', 'Tony', 45);
+        $expected = 'Hello world Tony your age is 45';
         $this->assertEquals($expected, $res);
     }
 

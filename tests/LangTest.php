@@ -151,7 +151,7 @@ class LangTest extends PlatineTestCase
             'tr' => 'Hello world 45'
         ]);
         $s = new Lang($translator);
-        $res = $s->tr('Hello world %s', 45);
+        $res = $s->tr('Hello world %s your age is %d', 'Tony', 45);
         $expected = 'Hello world 45';
         $this->assertEquals($expected, $res);
     }

@@ -212,6 +212,10 @@ class Lang
      */
     public function tr(string $message, $args = []): string
     {
+		if (!empty($args) && !is_array($args)) {
+           $args = array_slice(func_get_args(), 1);
+        }
+			
         return $this->translator->tr($message, $args);
     }
 
@@ -230,6 +234,10 @@ class Lang
         int $count,
         $args = []
     ): string {
+		if (!empty($args) && !is_array($args)) {
+           $args = array_slice(func_get_args(), 1);
+        }
+		
         return $this->translator->trp(
             $singular,
             $plural,
