@@ -55,7 +55,6 @@ use Platine\Lang\Storage\StorageInterface;
  */
 interface TranslatorInterface
 {
-
     /**
      * The class constructor
      * @param Configuration|null $config

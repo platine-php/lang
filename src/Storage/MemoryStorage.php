@@ -55,7 +55,6 @@ use Platine\Lang\Configuration;
  */
 class MemoryStorage implements StorageInterface
 {
-
     /**
      * The configuration instance
      * @var Configuration
@@ -174,10 +173,10 @@ class MemoryStorage implements StorageInterface
      */
     public function addDomain(string $domain, ?string $path = null): self
     {
-		if ($path === null) {
+        if ($path === null) {
             $path = $this->config->get('translation_path');
         }
-        
+
         if (isset($this->domains[$domain]) && $this->domains[$domain] !== $path) {
             throw new InvalidArgumentException(sprintf(
                 'Domain [%s] already exists',

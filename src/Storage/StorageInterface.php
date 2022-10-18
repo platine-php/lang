@@ -52,7 +52,6 @@ namespace Platine\Lang\Storage;
  */
 interface StorageInterface
 {
-
     /**
      * Set the locale
      * @param string $locale

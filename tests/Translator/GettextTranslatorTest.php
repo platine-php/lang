@@ -18,7 +18,6 @@ use Platine\Dev\PlatineTestCase;
  */
 class GettextTranslatorTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $cfg = new Configuration([

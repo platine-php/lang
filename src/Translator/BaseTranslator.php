@@ -56,7 +56,6 @@ use Platine\Lang\Storage\StorageInterface;
  */
 abstract class BaseTranslator implements TranslatorInterface
 {
-
     /**
      * The configuration instance
      * @var Configuration

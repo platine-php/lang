@@ -8,8 +8,6 @@ use Platine\Lang\Translator\BaseTranslator;
 
 class CustomTranslator extends BaseTranslator
 {
-
-
     public function tr(string $message, $args = array()): string
     {
         return '';

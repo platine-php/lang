@@ -16,7 +16,6 @@ use Platine\Lang\Configuration;
  */
 class ConfigurationTest extends PlatineTestCase
 {
-
     public function testConstructor()
     {
         $cfg = new Configuration([]);

@@ -56,7 +56,6 @@ use Platine\Lang\Storage\StorageInterface;
  */
 class GettextTranslator extends BaseTranslator
 {
-
     /**
      * The default domain
      * @var string

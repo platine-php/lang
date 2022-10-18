@@ -17,7 +17,6 @@ use Platine\Dev\PlatineTestCase;
  */
 class MemoryStorageTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $cfg = new Configuration([

@@ -19,7 +19,6 @@ use Platine\Test\Fixture\Lang\CustomTranslator;
  */
 class LangTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $translator = $this->getMockInstance(CustomTranslator::class);

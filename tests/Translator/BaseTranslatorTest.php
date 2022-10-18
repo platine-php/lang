@@ -17,7 +17,6 @@ use Platine\Test\Fixture\Lang\CustomTranslator;
  */
 class BaseTranslatorTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $cfg = new Configuration([

@@ -54,7 +54,6 @@ use Platine\Stdlib\Config\AbstractConfiguration;
  */
 class Configuration extends AbstractConfiguration
 {
-
     /**
      * {@inheritdoc}
      */
@@ -69,7 +68,7 @@ class Configuration extends AbstractConfiguration
             'locales' => 'array'
         ];
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -82,7 +81,6 @@ class Configuration extends AbstractConfiguration
         'encoding' => 'UTF-8',
         'translation_path' => 'lang',
         'locales' => ['en_US']
-    ];
+        ];
     }
-
 }
