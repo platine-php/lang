@@ -174,16 +174,17 @@ class MemoryStorage implements StorageInterface
      */
     public function addDomain(string $domain, ?string $path = null): self
     {
-        if (isset($this->domains[$domain])) {
+		if ($path === null) {
+            $path = $this->config->get('translation_path');
+        }
+        
+        if (isset($this->domains[$domain]) && $this->domains[$domain] !== $path) {
             throw new InvalidArgumentException(sprintf(
                 'Domain [%s] already exists',
                 $domain
             ));
         }
 
-        if ($path === null) {
-            $path = $this->config->get('translation_path');
-        }
         $this->domains[$domain] = $path;
 
         return $this;

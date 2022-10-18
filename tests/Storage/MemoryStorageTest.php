@@ -110,7 +110,7 @@ class MemoryStorageTest extends PlatineTestCase
             'locales' => ['en_US']
         ]);
         $s = new MemoryStorage($cfg);
-        $s->addDomain('my_domain');
+        $s->addDomain('my_domain', 'oo');
         $this->expectException(InvalidArgumentException::class);
         $s->addDomain('my_domain');
     }
