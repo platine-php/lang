@@ -234,7 +234,7 @@ class Lang
         $args = []
     ): string {
         if (!empty($args) && !is_array($args)) {
-            $args = array_slice(func_get_args(), 1);
+            $args = array_slice(func_get_args(), 3);
         }
 
         return $this->translator->trp(
