@@ -20,7 +20,8 @@
 	
     "require": {
         "php": "^7.4 || ^8",
-        "platine-php/stdlib": "^1.0"
+        "platine-php/stdlib": "^1.0",
+        "ext-gettext": "*"
     },
 	
     "require-dev": {
