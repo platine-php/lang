@@ -49,7 +49,7 @@ namespace Platine\Lang;
 use Platine\Stdlib\Config\AbstractConfiguration;
 
 /**
- * Class Configuration
+ * @class Configuration
  * @package Platine\Lang
  */
 class Configuration extends AbstractConfiguration
@@ -75,12 +75,12 @@ class Configuration extends AbstractConfiguration
     public function getDefault(): array
     {
         return [
-        'locale' => 'en_US',
-        'store_name' => 'app_lang',
-        'domain' => 'languages',
-        'encoding' => 'UTF-8',
-        'translation_path' => 'lang',
-        'locales' => ['en_US']
+            'locale' => 'en_US',
+            'store_name' => 'app_lang',
+            'domain' => 'languages',
+            'encoding' => 'UTF-8',
+            'translation_path' => 'lang',
+            'locales' => ['en_US']
         ];
     }
 }

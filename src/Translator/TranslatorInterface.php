@@ -50,7 +50,7 @@ use Platine\Lang\Configuration;
 use Platine\Lang\Storage\StorageInterface;
 
 /**
- * Class TranslatorInterface
+ * @class TranslatorInterface
  * @package Platine\Lang\Translator
  */
 interface TranslatorInterface
@@ -140,34 +140,34 @@ interface TranslatorInterface
     /**
      * Translation a single message using current domain
      * @param string $message
-     * @param array<int, mixed>|mixed $args
+     * @param mixed $args
      * @return string
      */
-    public function tr(string $message, $args = []): string;
+    public function tr(string $message, mixed $args = []): string;
 
     /**
      * Translation a plural message using given domain
      * @param string $singular
      * @param string $plural
      * @param int $count
-     * @param array<int, mixed>|mixed $args
+     * @param mixed $args
      * @return string
      */
     public function trp(
         string $singular,
         string $plural,
         int $count,
-        $args = []
+        mixed $args = []
     ): string;
 
     /**
      * Translation a single message for the given domain
      * @param string $message
      * @param string $domain
-     * @param array<int, mixed>|mixed $args
+     * @param mixed $args
      * @return string
      */
-    public function trd(string $message, string $domain, $args = []): string;
+    public function trd(string $message, string $domain, mixed $args = []): string;
 
     /**
      * Translation a plural message for the given domain
@@ -175,7 +175,7 @@ interface TranslatorInterface
      * @param string $plural
      * @param int $count
      * @param string $domain
-     * @param array<int, mixed>|mixed $args
+     * @param mixed $args
      * @return string
      */
     public function trdp(
@@ -183,6 +183,6 @@ interface TranslatorInterface
         string $plural,
         int $count,
         string $domain,
-        $args = []
+        mixed $args = []
     ): string;
 }

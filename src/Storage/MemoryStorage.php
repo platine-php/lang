@@ -50,7 +50,7 @@ use InvalidArgumentException;
 use Platine\Lang\Configuration;
 
 /**
- * Class MemoryStorage
+ * @class MemoryStorage
  * @package Platine\Lang\Storage
  */
 class MemoryStorage implements StorageInterface

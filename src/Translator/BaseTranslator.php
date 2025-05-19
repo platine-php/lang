@@ -51,7 +51,7 @@ use Platine\Lang\Storage\MemoryStorage;
 use Platine\Lang\Storage\StorageInterface;
 
 /**
- * Class BaseTranslator
+ * @class BaseTranslator
  * @package Platine\Lang\Translator
  */
 abstract class BaseTranslator implements TranslatorInterface
@@ -76,7 +76,7 @@ abstract class BaseTranslator implements TranslatorInterface
         ?StorageInterface $storage = null
     ) {
         $this->config = $config ?? new Configuration([]);
-        $this->storage = $storage ? $storage : new MemoryStorage($config);
+        $this->storage = $storage ?? new MemoryStorage($config);
     }
 
     /**

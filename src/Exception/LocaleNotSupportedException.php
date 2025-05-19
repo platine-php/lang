@@ -35,7 +35,7 @@ namespace Platine\Lang\Exception;
 use Exception;
 
 /**
- * Class LocaleNotSupportedException
+ * @class LocaleNotSupportedException
  * @package Platine\Lang\Exception
  */
 class LocaleNotSupportedException extends Exception

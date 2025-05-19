@@ -29,9 +29,9 @@
  */
 
 /**
- *  @file StorageInterface.php
+ *  @file MemoryStorage.php
  *
- *  The storage class
+ *  The memory storage class
  *
  *  @package    Platine\Lang\Storage
  *  @author Platine Developers Team
@@ -46,63 +46,70 @@ declare(strict_types=1);
 
 namespace Platine\Lang\Storage;
 
+use Platine\Lang\Configuration;
+use Platine\Session\Session;
+
 /**
- * @class StorageInterface
+ * @class SessionStorage
  * @package Platine\Lang\Storage
  */
-interface StorageInterface
+class SessionStorage extends MemoryStorage
 {
     /**
-     * Set the locale
-     * @param string $locale
-     * @return $this
+     * The Session instance
+     * @var Session
      */
-    public function setLocale(string $locale): self;
+    protected Session $session;
 
     /**
-     * Return the current locale
-     * @return string
+     * The session key to store user language
+     * @var string
      */
-    public function getLocale(): string;
-
-
-    /**
-     * Return the encoding
-     * @return string
-     */
-    public function getEncoding(): string;
+    protected string $sessionKey;
 
     /**
-     * Set the locale encoding
-     * @param string $encoding
-     * @return $this
+     * Create new instance
+     * @param Session $session
+     * @param Configuration|null $config
      */
-    public function setEncoding(string $encoding): self;
+    public function __construct(
+        Session $session,
+        ?Configuration $config = null
+    ) {
+        parent::__construct($config);
+        $this->session = $session;
+        $this->sessionKey = $this->config->get('store_name');
+    }
 
     /**
-     * Set default domain to use
-     * @param string $domain
-     * @return $this
+     * {@inhereitdoc}
      */
-    public function setDomain(string $domain): self;
+    public function setLocale(string $locale): self
+    {
+        $this->session->set($this->sessionKey, $locale);
+
+        return $this;
+    }
 
     /**
-     * Return the default domain
-     * @return string
+     * {@inhereitdoc}
      */
-    public function getDomain(): string;
+    public function getLocale(): string
+    {
+        $configLocale = $this->config->get('locale');
+
+        return $this->session->get(
+            $this->sessionKey,
+            $configLocale
+        );
+    }
 
     /**
-     * Add new domain
-     * @param string $domain
-     * @param string|null $path
-     * @return $this
+     * Return the session instance
+     * @return Session
      */
-    public function addDomain(string $domain, ?string $path = null): self;
-
-    /**
-     * Return the list of domain
-     * @return array<string, string>
-     */
-    public function getDomains(): array;
+    public function getSession(): Session
+    {
+        return $this->session;
+    }
 }

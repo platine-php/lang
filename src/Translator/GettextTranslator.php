@@ -51,7 +51,7 @@ use Platine\Lang\Exception\LocaleNotSupportedException;
 use Platine\Lang\Storage\StorageInterface;
 
 /**
- * Class GettextTranslator
+ * @class GettextTranslator
  * @package Platine\Lang\Translator
  */
 class GettextTranslator extends BaseTranslator
@@ -96,7 +96,7 @@ class GettextTranslator extends BaseTranslator
      */
     public function setLocale(string $locale): self
     {
-        if (!$this->isLocaleSupported($locale)) {
+        if ($this->isLocaleSupported($locale) === false) {
             throw new LocaleNotSupportedException(sprintf(
                 'Locale [%s] is not supported',
                 $locale
@@ -179,7 +179,7 @@ class GettextTranslator extends BaseTranslator
     /**
     * {@inhereitdoc}
     */
-    public function tr(string $message, $args = []): string
+    public function tr(string $message, mixed $args = []): string
     {
         $translation = gettext($message);
 
@@ -200,7 +200,7 @@ class GettextTranslator extends BaseTranslator
     public function trd(
         string $message,
         string $domain,
-        $args = []
+        mixed $args = []
     ): string {
         $translation = dgettext($domain, $message);
 
@@ -223,7 +223,7 @@ class GettextTranslator extends BaseTranslator
         string $plural,
         int $count,
         string $domain,
-        $args = []
+        mixed $args = []
     ): string {
         $translation = dngettext($domain, $singular, $plural, $count);
 
@@ -245,7 +245,7 @@ class GettextTranslator extends BaseTranslator
         string $singular,
         string $plural,
         int $count,
-        $args = []
+        mixed $args = []
     ): string {
 
         $translation = ngettext($singular, $plural, $count);

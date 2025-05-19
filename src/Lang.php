@@ -49,7 +49,7 @@ namespace Platine\Lang;
 use Platine\Lang\Translator\TranslatorInterface;
 
 /**
- * Class Lang
+ * @class Lang
  * @package Platine\Lang
  */
 class Lang
@@ -206,10 +206,10 @@ class Lang
      * {@inhereitdoc}
      * @see TranslatorInterface::tr
      * @param string $message
-     * @param array<int, mixed>|mixed $args
+     * @param mixed $args
      * @return string
      */
-    public function tr(string $message, $args = []): string
+    public function tr(string $message, mixed $args = []): string
     {
         if (!empty($args) && !is_array($args)) {
             $args = array_slice(func_get_args(), 1);
@@ -224,14 +224,14 @@ class Lang
      * @param string $singular
      * @param string $plural
      * @param int $count
-     * @param array<int, mixed>|mixed $args
+     * @param mixed $args
      * @return string
      */
     public function trp(
         string $singular,
         string $plural,
         int $count,
-        $args = []
+        mixed $args = []
     ): string {
         if (!empty($args) && !is_array($args)) {
             $args = array_slice(func_get_args(), 3);
@@ -250,13 +250,13 @@ class Lang
      * @see TranslatorInterface::trd
      * @param string $message
      * @param string $domain
-     * @param array<int, mixed>|mixed $args
+     * @param mixed $args
      * @return string
      */
     public function trd(
         string $message,
         string $domain,
-        $args = []
+        mixed $args = []
     ): string {
         return $this->translator->trd(
             $message,
@@ -272,7 +272,7 @@ class Lang
      * @param string $plural
      * @param int $count
      * @param string $domain
-     * @param array<int, mixed>|mixed $args
+     * @param mixed $args
      * @return string
      */
     public function trdp(
@@ -280,7 +280,7 @@ class Lang
         string $plural,
         int $count,
         string $domain,
-        $args = []
+        mixed $args = []
     ): string {
         return $this->translator->trdp(
             $singular,
