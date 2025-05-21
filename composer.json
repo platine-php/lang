@@ -21,7 +21,7 @@
     "require": {
         "php": "^8",
         "platine-php/stdlib": "^1.0",
-        "platine-php/session": "^1.0",
+        "platine-php/session": "^2.0",
         "ext-gettext": "*"
     },
 	
