@@ -48,12 +48,13 @@ namespace Platine\Lang\Translator;
 
 use Platine\Lang\Configuration;
 use Platine\Lang\Storage\StorageInterface;
+use Stringable;
 
 /**
  * @class TranslatorInterface
  * @package Platine\Lang\Translator
  */
-interface TranslatorInterface
+interface TranslatorInterface extends Stringable
 {
     /**
      * The class constructor
@@ -90,12 +91,6 @@ interface TranslatorInterface
      * @return array<int, string>
      */
     public function locales(): array;
-
-    /**
-     * The string representation
-     * @return string
-     */
-    public function __toString(): string;
 
     /**
      * Return the encoding
