@@ -102,7 +102,7 @@ class GettextTranslator extends BaseTranslator
                 $locale
             ));
         }
-
+        $this->locale = $locale;
         $localeText = $locale . '.' . $this->getEncoding();
         putenv('LC_ALL=' . $localeText);
         setlocale(LC_ALL, $localeText);
@@ -153,7 +153,11 @@ class GettextTranslator extends BaseTranslator
     {
         parent::setDomain($domain);
 
-        bindtextdomain($domain, $this->config->get('translation_path'));
+        $versionedPath = $this->getVersionedPath(
+            $domain,
+            $this->config->get('translation_path')
+        );
+        bindtextdomain($domain, $versionedPath);
         bind_textdomain_codeset($domain, $this->getEncoding());
 
         $this->domain = textdomain($domain);
@@ -170,7 +174,12 @@ class GettextTranslator extends BaseTranslator
 
         $domains = $this->storage->getDomains();
 
-        bindtextdomain($domain, $domains[$domain]);
+        $versionedPath = $this->getVersionedPath(
+            $domain,
+            $domains[$domain]
+        );
+
+        bindtextdomain($domain, $versionedPath);
         bind_textdomain_codeset($domain, $this->getEncoding());
 
         return $this;
@@ -259,5 +268,28 @@ class GettextTranslator extends BaseTranslator
         }
 
         return $translation;
+    }
+
+    /**
+     * Return the versioned path of .mo file
+     * @param string $domain
+     * @param string $localeDir
+     * @return string
+     */
+    protected function getVersionedPath(string $domain, string $localeDir): string
+    {
+        // Path to .mo file
+        $moFile = sprintf(
+            '%s/%s/LC_MESSAGES/%s.mo',
+            $localeDir,
+            $this->locale,
+            $domain
+        );
+
+        // Version based on the modification date of .mo file
+        $version = file_exists($moFile) ? filemtime($moFile) : time();
+
+        // Add version to tha path (to break the cache)
+        return sprintf('%s?v=%d', $localeDir, $version);
     }
 }
